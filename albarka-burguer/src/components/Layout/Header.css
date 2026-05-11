@@ -1,0 +1,145 @@
+/* ===== HEADER — Glassmorphism ===== */
+.header {
+  height: 60px;
+  background: rgba(10, 10, 15, .7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--border-1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Bottom glow line */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(245, 166, 35, .12),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  background: var(--bg-3);
+  border: 1px solid var(--border-2);
+  color: var(--text-0);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all var(--t-fast);
+}
+.header-toggle:hover {
+  background: var(--bg-4);
+  border-color: var(--border-3);
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-0);
+  letter-spacing: -0.02em;
+}
+
+.header-breadcrumb {
+  font-size: 12px;
+  color: var(--text-3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400;
+}
+
+.header-breadcrumb-sep {
+  color: var(--border-2);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-datetime {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.header-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.header-time {
+  font-size: 10.5px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.header-notification {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid var(--border-1);
+  color: var(--text-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--t-fast);
+}
+
+.header-notification:hover {
+  background: rgba(255, 255, 255, .06);
+  color: var(--text-0);
+  border-color: var(--border-2);
+}
+
+.header-notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--accent-red);
+  font-size: 9px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px var(--accent-red-glow);
+  border: 2px solid var(--bg-0);
+}
+
+@media (max-width: 768px) {
+  .header { padding: 0 16px; }
+  .header-toggle { display: flex; }
+  .header-datetime { display: none; }
+}
