@@ -111,7 +111,10 @@ export default function Facturacion() {
     <div className="facturacion-page">
       {/* Header */}
       <div className="facturacion-header">
-        <h1>🧾 Registro de Ventas</h1>
+        <h1>
+          <span className="emoji-inline">🧾</span>{' '}
+          <span className="gradient-text">Registro de Ventas</span>
+        </h1>
         <span className="badge badge-info">RF 2.1 — Facturación</span>
       </div>
 
@@ -206,75 +209,80 @@ export default function Facturacion() {
             )}
           </div>
 
-          {/* Totales */}
-          <div className="invoice-totals">
-            <div className="invoice-row">
-              <span>Subtotal</span>
-              <span>{fmt(subtotal)}</span>
-            </div>
-            <div className="invoice-row">
-              <span>IVA (8%)</span>
-              <span>{fmt(iva)}</span>
-            </div>
-            <div className="invoice-row">
-              <span>Costo de envío</span>
-              <span>{shippingCost > 0 ? fmt(shippingCost) : '—'}</span>
-            </div>
-            <div className="invoice-row total">
-              <span>Total</span>
-              <span>{fmt(total)}</span>
-            </div>
-          </div>
+          {/* Show the rest only if cart has items */}
+          {cart.length > 0 && (
+            <>
+              {/* Totales */}
+              <div className="invoice-totals">
+                <div className="invoice-row">
+                  <span>Subtotal</span>
+                  <span>{fmt(subtotal)}</span>
+                </div>
+                <div className="invoice-row">
+                  <span>IVA (8%)</span>
+                  <span>{fmt(iva)}</span>
+                </div>
+                <div className="invoice-row">
+                  <span>Costo de envío</span>
+                  <span>{shippingCost > 0 ? fmt(shippingCost) : '—'}</span>
+                </div>
+                <div className="invoice-row total">
+                  <span>Total</span>
+                  <span>{fmt(total)}</span>
+                </div>
+              </div>
 
-          {/* Método de pago */}
-          <div className="payment-section">
-            <h3>Método de Pago</h3>
-            <div className="payment-methods">
-              {PAYMENT_METHODS.map((pm) => (
-                <button
-                  key={pm.id}
-                  className={`payment-option ${paymentMethod === pm.id ? 'selected' : ''}`}
-                  onClick={() => setPaymentMethod(pm.id)}
-                >
-                  <span className="payment-option-icon">{pm.icon}</span>
-                  {pm.label}
+              {/* Método de pago */}
+              <div className="payment-section">
+                <h3>Método de Pago</h3>
+                <div className="payment-methods">
+                  {PAYMENT_METHODS.map((pm) => (
+                    <button
+                      key={pm.id}
+                      className={`payment-option ${paymentMethod === pm.id ? 'selected' : ''}`}
+                      onClick={() => setPaymentMethod(pm.id)}
+                    >
+                      <span className="payment-option-icon">{pm.icon}</span>
+                      {pm.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Costo de envío */}
+              <div className="shipping-section">
+                <label htmlFor="shipping-cost">Costo de Envío (opcional)</label>
+                <input
+                  id="shipping-cost"
+                  className="form-input"
+                  type="number"
+                  min="0"
+                  step="500"
+                  placeholder="$0"
+                  value={shippingCost || ''}
+                  onChange={(e) => setShippingCost(Number(e.target.value) || 0)}
+                />
+              </div>
+
+              {/* Acciones */}
+              <div className="invoice-actions">
+                <button className="btn btn-secondary" onClick={clearCart}>
+                  Cancelar
                 </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Costo de envío */}
-          <div className="shipping-section">
-            <label htmlFor="shipping-cost">Costo de Envío (opcional)</label>
-            <input
-              id="shipping-cost"
-              className="form-input"
-              type="number"
-              min="0"
-              step="500"
-              placeholder="$0"
-              value={shippingCost || ''}
-              onChange={(e) => setShippingCost(Number(e.target.value) || 0)}
-            />
-          </div>
-
-          {/* Acciones */}
-          <div className="invoice-actions">
-            <button className="btn btn-secondary" onClick={clearCart}>
-              Cancelar
-            </button>
-            <button
-              className="btn btn-primary btn-lg"
-              onClick={handleSubmit}
-              disabled={cart.length === 0 || !paymentMethod}
-              style={{
-                opacity: cart.length === 0 || !paymentMethod ? .5 : 1,
-                cursor: cart.length === 0 || !paymentMethod ? 'not-allowed' : 'pointer',
-              }}
-            >
-              💰 Registrar Venta
-            </button>
-          </div>
+                <button
+                  className="btn btn-primary btn-lg"
+                  onClick={handleSubmit}
+                  disabled={!paymentMethod}
+                  style={{
+                    opacity: !paymentMethod ? .5 : 1,
+                    cursor: !paymentMethod ? 'not-allowed' : 'pointer',
+                  }}
+                >
+                  💰 Registrar Venta
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
@@ -285,7 +293,7 @@ export default function Facturacion() {
             <span className="modal-icon">✅</span>
             <h2>¡Venta Registrada!</h2>
             <p>
-              La factura <strong style={{ color: 'var(--brand-primary)' }}>{lastInvoice}</strong> ha
+              La factura <strong style={{ color: 'var(--neon)' }}>{lastInvoice}</strong> ha
               sido generada exitosamente.
             </p>
             <button className="btn btn-primary" onClick={() => setShowSuccess(false)}>

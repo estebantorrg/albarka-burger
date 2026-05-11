@@ -41,7 +41,7 @@
 .anulacion-modal {
   background:var(--bg-2); border:1px solid var(--border-2); border-radius:var(--r-xl);
   padding:32px; max-width:480px; width:92%; animation:scaleIn .3s ease both;
-  position:relative; overflow:hidden;
+  position:relative; overflow-y:auto; max-height:90vh;
 }
 .anulacion-modal::before {
   content:''; position:absolute; top:0; left:15%; right:15%; height:2px;
@@ -114,6 +114,13 @@
 @keyframes slideInRight {
   from { opacity:0; transform:translateX(30px); }
   to   { opacity:1; transform:translateX(0); }
+}
+
+.anulado-action-text {
+  font-size:11px; color:var(--accent-red); font-weight:600;
+  display:inline-block; padding:4px 8px;
+  background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.2);
+  border-radius:var(--r-sm); letter-spacing:.02em;
 }
 
 @media (max-width:768px) { .anulacion-modal-info { grid-template-columns:1fr; } }

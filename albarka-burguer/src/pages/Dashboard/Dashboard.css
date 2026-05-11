@@ -13,10 +13,14 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   margin-bottom: 6px;
-  background: linear-gradient(135deg, #fff 30%, var(--neon) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.emoji-inline {
+  display: inline-block;
+  -webkit-text-fill-color: initial;
 }
 
 .dashboard-welcome p {
@@ -200,6 +204,15 @@
   font-weight: 700;
 }
 
+.table-footer {
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: right;
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px dashed var(--border-1);
+}
+
 /* ── Quick actions ── */
 .quick-actions {
   display: flex;
@@ -224,6 +237,21 @@
   font-family: var(--font);
   position: relative;
   overflow: hidden;
+}
+
+.quick-action-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-action-title {
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.quick-action-desc {
+  font-size: 11px;
+  color: var(--text-3);
 }
 
 .quick-action-btn::after {

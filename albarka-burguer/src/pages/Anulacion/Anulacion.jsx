@@ -92,7 +92,10 @@ export default function Anulacion() {
     <div className="anulacion-page">
       {/* Header */}
       <div className="anulacion-header">
-        <h1>📋 Gestión de Facturas</h1>
+        <h1>
+          <span className="emoji-inline">📋</span>{' '}
+          <span className="gradient-text">Gestión de Facturas</span>
+        </h1>
         <span className="badge badge-danger">RF 2.2 — Anulación / Estados</span>
       </div>
 
@@ -152,9 +155,9 @@ export default function Anulacion() {
                 <tr key={inv.id}>
                   <td className="invoice-id-cell">{inv.id}</td>
                   <td>{inv.date}</td>
-                  <td style={{ color: 'var(--text-primary)' }}>{inv.customer}</td>
+                  <td style={{ color: 'var(--text-0)' }}>{inv.customer}</td>
                   <td>{inv.products}</td>
-                  <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{fmt(inv.total)}</td>
+                  <td style={{ fontWeight: 600, color: 'var(--text-0)' }}>{fmt(inv.total)}</td>
                   <td>{inv.method}</td>
                   <td>
                     <span
@@ -199,7 +202,7 @@ export default function Anulacion() {
                         </>
                       )}
                       {inv.status === 'Anulado' && (
-                        <span style={{ fontSize: 12, color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                        <span className="anulado-action-text">
                           {inv.anulacionReason ? `Motivo: ${inv.anulacionReason}` : 'Anulado'}
                         </span>
                       )}
@@ -227,7 +230,7 @@ export default function Anulacion() {
             <div className="anulacion-modal-info">
               <div className="anulacion-modal-info-item">
                 <span className="anulacion-modal-info-label">N° Factura</span>
-                <span className="anulacion-modal-info-value" style={{ color: 'var(--brand-primary)' }}>
+                <span className="anulacion-modal-info-value" style={{ color: 'var(--neon)' }}>
                   {anulacionModal.id}
                 </span>
               </div>
@@ -310,9 +313,9 @@ export default function Anulacion() {
             </div>
 
             <p style={{ marginBottom: 4, fontSize: 14 }}>
-              Factura: <strong style={{ color: 'var(--brand-primary)' }}>{estadoModal.id}</strong>
+              Factura: <strong style={{ color: 'var(--neon)' }}>{estadoModal.id}</strong>
             </p>
-            <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 8 }}>
+            <p style={{ fontSize: 13, color: 'var(--text-3)', marginBottom: 8 }}>
               Estado actual: <strong>{estadoModal.status}</strong>
             </p>
 

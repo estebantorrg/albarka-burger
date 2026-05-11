@@ -22,7 +22,10 @@ export default function Dashboard() {
     <div className="dashboard-page">
       {/* Bienvenida */}
       <div className="dashboard-welcome">
-        <h1>¡Bienvenido de vuelta! 👋</h1>
+        <h1>
+          <span className="gradient-text">¡Bienvenido de vuelta!</span>{' '}
+          <span className="emoji-inline">👋</span>
+        </h1>
         <p>Aquí tienes un resumen de la actividad de hoy en Albarka Burger.</p>
       </div>
 
@@ -66,11 +69,11 @@ export default function Dashboard() {
               <tbody>
                 {recentSales.map((sale) => (
                   <tr key={sale.id}>
-                    <td style={{ color: 'var(--brand-primary)', fontWeight: 600 }}>
+                    <td style={{ color: 'var(--neon)', fontWeight: 700 }}>
                       {sale.id}
                     </td>
-                    <td style={{ color: 'var(--text-primary)' }}>{sale.products}</td>
-                    <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                    <td style={{ color: 'var(--text-0)' }}>{sale.products}</td>
+                    <td style={{ fontWeight: 700, color: 'var(--text-0)' }}>
                       {sale.total}
                     </td>
                     <td>{sale.method}</td>
@@ -88,6 +91,9 @@ export default function Dashboard() {
               </tbody>
             </table>
           </div>
+          <div className="table-footer">
+            Mostrando {recentSales.length} de 38 facturas
+          </div>
         </div>
 
         {/* Acciones rápidas */}
@@ -98,11 +104,17 @@ export default function Dashboard() {
           <div className="quick-actions">
             <Link to="/facturacion" className="quick-action-btn">
               <div className="quick-action-icon orange">🧾</div>
-              Nueva Factura
+              <div className="quick-action-text">
+                <span className="quick-action-title">Nueva Factura</span>
+                <span className="quick-action-desc">Registrar una nueva venta</span>
+              </div>
             </Link>
             <Link to="/anulacion" className="quick-action-btn">
               <div className="quick-action-icon red">❌</div>
-              Anular Factura
+              <div className="quick-action-text">
+                <span className="quick-action-title">Anular Factura</span>
+                <span className="quick-action-desc">Gestionar estados de pedidos</span>
+              </div>
             </Link>
           </div>
         </div>
